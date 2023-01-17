@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"; xmlns:th="http://www.thymeleaf.org">
+
+<!-- server-side Java template engine for both web and standalone environments -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +11,8 @@
 </head>
 
 <body>
+    <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
     <div class="container">
         <h1 class="text-center">Todo List:</h1>
         <hr/>
@@ -24,13 +28,16 @@
                 </tr>
             </thead>
             <tbody>
-                
+                <tr th:each="task : ${tasksList}">
+                    <td th:text="${task.Id}">task_id</td>
+                    <td th:text="${task.description}">task_description</td>
+                    <td th:text="${task.complete}">task_complete</td>
+                    <td th:text="${task.createdTime}">task_createdTime</td>
+                    <td th:text="${task.modifiedTime}">task_modifiedTime</td>
+                </tr>
             </tbody>
         </table>
 
     </div>
-
-    <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
 </body>
 </html>
