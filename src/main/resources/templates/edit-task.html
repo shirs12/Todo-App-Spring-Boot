@@ -12,35 +12,34 @@
 </head>
 
 <body>
-<!--    <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>-->
-<!--    <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>-->
 <div class="container">
-    <div class="col-md-6">
+<!--    <div class="col-md-6">-->
         <form action="#"
               th:action="@{/task/{id}(id=${task.id})}"
               th:object="${task}"
               method="POST">
-            <div class="form-group">
-                <label for="description">Description</label>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
                 <input class="form-control"
                        type="text" th:field="*{description}"
                        id="description"
                        placeholder="Add a description">
             </div>
-            <div class="checkbox">
-                <label>
+            <div class="mb-3 form-check" >
+                <label class="form-check-label">
                     <input type="checkbox"
+                           class="form-check-input"
                            th:checked="${complete} == true"
                            th:field="*{complete}" id="complete"/>
                     Complete
                 </label>
             </div>
 
-            <button class="btn btn-default" type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">submit</button>
             <input type="hidden" th:field="*{createdTime}"/>
             <input type="hidden" th:field="*{modifiedTime}"/>
         </form>
-    </div>
+<!--    </div>-->
 
 </div>
 </body>
