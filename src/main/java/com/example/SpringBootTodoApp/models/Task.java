@@ -1,6 +1,7 @@
 package com.example.SpringBootTodoApp.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ public class Task {
 
     @Getter
     @Setter
+    @NotBlank(message = "Description is required.")
     private String description;
 
     @Getter

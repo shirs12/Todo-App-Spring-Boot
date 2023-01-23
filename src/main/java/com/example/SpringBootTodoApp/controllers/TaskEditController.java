@@ -17,12 +17,25 @@ public class TaskEditController {
     @Autowired
     private TaskRepo taskRepo;
 
+    @GetMapping("/create-task")
+    public String addTask(Task task){
+        return "add-task";
+    }
+
     @GetMapping("/edit/{id}")
     public String editTask(@PathVariable("id") long id, Model model){
         Task task = taskRepo.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("Task: " + id + "not found"));
         model.addAttribute("task", task);
         return "edit-task";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTask(@PathVariable("id") long id, Model model){
+        Task task = taskRepo.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Task: " + id + "not found"));
+        taskRepo.delete(task);
+        return "redirect:/";
     }
 
 }
