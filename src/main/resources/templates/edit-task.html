@@ -11,21 +11,20 @@
     <title>TodoApp</title>
 </head>
 
-<body>
-<div class="container">
-    <div class="col-md-6" style="margin: auto; text-align: center;">
-    <h2>Edit task</h2>
+<body style="margin-top: 10%">
+    <div class="card col-md-6" style="margin: auto; text-align: center;">
+        <h5 class="card-header">Edit task</h5>
     <br>
         <form action="#"
               th:action="@{/task/{id}(id=${task.id})}"
               th:object="${task}"
               method="POST">
-            <div class="mb-3">
+            <div class="card-body">
                 <label class="form-label" for="description">Description: </label>
                 <input class="form-control"
                        type="text" th:field="*{description}"
                        id="description"
-                       placeholder="Add a description">
+                       placeholder="add a description">
             </div>
             <div class="mb-3 form-check" >
                 <label class="form-check-label">
@@ -38,11 +37,12 @@
             </div>
 
             <button class="btn btn-primary" type="submit">submit</button>
+
             <input type="hidden" th:field="*{createdTime}"/>
             <input type="hidden" th:field="*{modifiedTime}"/>
         </form>
+        <br>
     </div>
 
-</div>
 </body>
 </html>
