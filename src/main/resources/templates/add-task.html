@@ -11,16 +11,15 @@
   <title>TodoApp</title>
 </head>
 
-<body>
-<div class="container">
-  <div class="col-md-6" style="margin: auto; text-align: center;">
-    <h2>Add a new task to the Todo list</h2>
+<body style="margin-top: 10%">
+<div class="card col-md-6" style="margin: auto; text-align: center; ">
+    <h5 class="card-header">Add a new task to the Todo list</h5>
     <br>
     <form action="#"
           th:action="@{/task}"
           th:object="${task}"
           method="POST">
-      <div class="mb-3">
+      <div class="card-body">
         <label class="form-label" for="description">Description: </label>
         <input class="form-control"
                type="text"
@@ -28,12 +27,10 @@
                id="description"
                placeholder="add a description">
         <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-      </div>
-
+        <br>
       <button class="btn btn-primary" type="submit">add</button>
-
-    </form>
   </div>
+    </form>
 
 </div>
 </body>

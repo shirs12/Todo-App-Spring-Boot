@@ -45,8 +45,6 @@ public class Task {
         DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").withZone(ZoneId.systemDefault());
         this.createdTime = dateTime.format(Instant.now());
         this.modifiedTime = dateTime.format(Instant.now());
-//        this.createdTime = Instant.now();
-//        this.modifiedTime = Instant.now();
     }
 
     @Override
