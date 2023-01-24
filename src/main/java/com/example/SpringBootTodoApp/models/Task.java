@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "task")
@@ -29,19 +31,22 @@ public class Task {
 
     @Getter
     @Setter
-    private Instant createdTime;
+    private String createdTime;
 
     @Getter
     @Setter
-    private Instant modifiedTime;
+    private String modifiedTime;
 
     public Task() {}
 
     public Task(String description) {
         this.description = description;
         this.complete = false;
-        this.createdTime = Instant.now();
-        this.modifiedTime = Instant.now();
+        DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").withZone(ZoneId.systemDefault());
+        this.createdTime = dateTime.format(Instant.now());
+        this.modifiedTime = dateTime.format(Instant.now());
+//        this.createdTime = Instant.now();
+//        this.modifiedTime = Instant.now();
     }
 
     @Override

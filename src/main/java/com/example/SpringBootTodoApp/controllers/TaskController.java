@@ -16,11 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.time.Instant;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 
 @Controller
 public class TaskController {
     private final Logger logger = LoggerFactory.getLogger(TaskController.class);
+    DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").withZone(ZoneId.systemDefault());
 
     @Autowired
     private TaskRepo taskRepo;
@@ -37,8 +39,8 @@ public class TaskController {
     @PostMapping("/task")
     public String addTask(@Valid Task task, BindingResult result, Model model){
         if (result.hasErrors()) return "add-task";
-        task.setCreatedTime(Instant.now());
-        task.setModifiedTime(Instant.now());
+        task.setCreatedTime(dateTime.format(Instant.now()));
+        task.setModifiedTime(dateTime.format(Instant.now()));
         taskRepo.save(task);
         return "redirect:/";
     }
@@ -49,7 +51,8 @@ public class TaskController {
             task.setId(id);
             return "edit-task";
         }
-        task.setModifiedTime(Instant.now());
+        task.setModifiedTime(dateTime.format(Instant.now()));
+        System.out.println();
         taskRepo.save(task);
         return "redirect:/";
     }
